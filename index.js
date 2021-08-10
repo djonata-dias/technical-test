@@ -5,8 +5,10 @@ const apiRoutes = require('./routes/apiRoutes');
 const viewsRoutes = require('./routes/viewsRoutes');
 
 const app = express();
-app.use(express.json())
+app.use(express.json());
+app.use(express.urlencoded(true));
 app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
 
 const PORT = process.env.PORT;
 
