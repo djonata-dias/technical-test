@@ -1,9 +1,9 @@
 const express = require('express');
 const fs = require('fs');
-const loginController = require('./controllers/loginController');
-const auth = require('./middlewares/auth');
-const { fetchAPI } = require('./utils');
-const jsonData = require('./currencies.json');
+const loginController = require('../controllers/loginController');
+const auth = require('../middlewares/auth');
+const { fetchAPI } = require('../utils');
+const jsonData = require('../currencies.json');
 const router = express.Router();
 
 router.post('/login', loginController);
