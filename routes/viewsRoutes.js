@@ -11,5 +11,14 @@ router.get('/login', async (_req, res) => {
 })
 
 
+router.get('/', async (_req, res) => {
+  try {
+    res.status(200).render('viewCurrencies');
+  } catch (error) {
+    res.status(500).json({ messsage: error });
+  }
+})
+
+
 
 module.exports = router;
