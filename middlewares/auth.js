@@ -6,7 +6,7 @@ function verifyJWT(req, res, next) {
   const token = req.headers['authorization'];
 
   if (!token) {
-    return res.status(401).json({ auth: false, message: 'Token inválido ou inexistente!' });
+    return res.status(401).json({ auth: false, message: 'Token inválido!' });
   }
 
   jwt.verify(token, process.env.SECRET_TOKEN, (err, decoded) => {
