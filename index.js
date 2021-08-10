@@ -1,14 +1,17 @@
 require('dotenv').config();
 
 const express = require('express');
-const routes = require('./routes');
+const apiRoutes = require('./routes/apiRoutes');
+const viewsRoutes = require('./routes/viewsRoutes');
 
 const app = express();
 app.use(express.json())
+app.set('view engine', 'ejs');
 
 const PORT = process.env.PORT;
 
-app.use('/api', routes)
+app.use('/api', apiRoutes)
+app.use('/', viewsRoutes)
 
 app.get('*', (_req, res) => {
   res.status(404).json({ message: "Endpoint não encontrado" })
