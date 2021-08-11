@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-
 router.get('/login', async (_req, res) => {
   try {
     res.status(200).render('login');
@@ -19,6 +18,13 @@ router.get('/', async (_req, res) => {
   }
 })
 
+router.get('/editCurrency', async (_req, res) => {
+  try {
+    res.status(200).render('editCurrencies');
+  } catch (error) {
+    res.status(500).json({ messsage: error });
+  }
+})
 
 
 module.exports = router;
