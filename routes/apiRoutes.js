@@ -8,6 +8,11 @@ const router = express.Router();
 
 router.post('/login', loginController);
 
+router.get('/crypto/currencies', auth, (_req, res) => {
+  console.log(jsonData);
+  res.status(200).json(jsonData);
+})
+
 router.get('/crypto/btc', async (_req, res) => {
   try {
     const { time, disclaimer, bpi } = await fetchAPI();
@@ -42,26 +47,29 @@ router.get('/crypto/btc', async (_req, res) => {
 
 })
 
-router.post('/crypto/btc', auth,(req, res) => {
-  const { currency, value } = req.body;
-  const currencys = ['BRL', 'EUR', 'CAD'];
-
-  if (!currency || currencys.indexOf(currency) === -1 || typeof currency !== 'string') {
-    return res.status(400).json({ message: "Moeda inválida" });
-  }
-  if (!value || typeof value !== 'number') {
-    return res.status(400).json({ message: "Valor inválido" });
-  }
-
-  jsonData[currency] = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 3, minimumFractionDigits: 3 }).format(value)
-
-  fs.writeFile("currencies.json", JSON.stringify(jsonData), 'utf8', function (error) {
-    if (error) {
-      return res.status(500).json({ messsage: error });
+router.post('/crypto/btc', auth, (req, res) => {
+  try {
+    const { currency, value } = req.body;
+    const currencys = ['BRL', 'EUR', 'CAD'];
+    const currencyValue = Number(value)
+    if (!currency || currencys.indexOf(currency) === -1 || typeof currency !== 'string') {
+      return res.status(400).json({ message: "Moeda inválida" });
+    }
+    if (!value || typeof currencyValue !== 'number') {
+      return res.status(400).json({ message: "Valor inválido" });
     }
 
-    res.status(200).json({ messsage: "Valor alterado com sucesso!" });
-  });
+    jsonData[currency] = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 3, minimumFractionDigits: 3 }).format(currencyValue)
 
+    fs.writeFile("currencies.json", JSON.stringify(jsonData), 'utf8', function (error) {
+      if (error) {
+        return res.status(500).json({ messsage: error });
+      }
+
+      res.status(200).json({ messsage: "Valor alterado com sucesso!" });
+    });
+  } catch (error) {
+    res.status(500).json({ messsage: error });
+  }
 })
 module.exports = router;
