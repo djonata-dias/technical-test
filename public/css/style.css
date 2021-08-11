@@ -14,3 +14,9 @@
 .login-input {
   max-width: 300px;
 }
+
+.currencyField, #BTC {
+  max-width: 150px;
+  background-color: darkgrey;
+}
+

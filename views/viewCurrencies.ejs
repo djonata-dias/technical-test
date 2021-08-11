@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script src="scripts/viewCurrencies.js"></script>
+  <title>Home - Crypto Currencies</title>
+</head>
+
+<body>
+  <div class="background-container">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col"></div>
+
+        <div class="col">
+          <button id="updateCurrencies" class="btn btn-secondary mb-3">Atualizar valor monetário</button>
+        </div>
+        <div class="col"></div>
+
+      </div>
+      <div class="row justify-content-center">
+        <div class="col"></div>
+
+        <div class="col">
+          <label for="BTC">BTC</label>
+          <input class="btn" id="BTC" type="number" value="1" max-width="150px">
+        </div>
+        <div class="col"></div>
+
+      </div>
+      <div class="row justify-content-around">
+        <div class="col">
+          <label for="USD">USD</label>
+          <input class="currencyField btn" id="USD" type="number" readonly>
+        </div>
+        <div class="col">
+          <label for="BRL">BRL</label>
+          <input class="currencyField btn" id="BRL" type="number" readonly>
+        </div>
+        <div class="col">
+          <label for="EUR">EUR</label>
+          <input class="currencyField btn" id="EUR" type="number" readonly>
+        </div>
+        <div class="col">
+          <label for="CAD">CAD</label>
+          <input class="currencyField btn" id="CAD" type="number" readonly>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
