@@ -6,11 +6,9 @@ function loginController(req, res) {
   if (emailValidate(email) && password.length >= 6) {
     const id = 1;
     const token = jwt.sign({ id }, process.env.SECRET_TOKEN, {
-      expiresIn: 900 // expires in 15 min
+      expiresIn: 900, // expires in 15 min
     });
     res.status(200)
-    console.log(JSON.stringify(req.body));
-
     return res.json({auth: true, token})
   }
   return res.status(400).json({ message: "Campos inválidos!" });
