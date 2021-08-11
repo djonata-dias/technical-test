@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/viewCurrencies.css">
+  <script src="scripts/editCurrencies.js"></script>
+
+  <title>Edit - Crypto Currencies</title>
+</head>
+
+<body>
+  <div class="background-container">
+    <div class="center-block">
+      <form class="g-3" action="/api/crypto/btc" method="POST" id="edit-form">
+        <div class="mb-3">
+          <label for="currencySelect" class="form-label">Moeda</label>
+          <select name="currencySelect" id="currencySelect">
+            <option value="BRL" selected>BRL</option>
+            <option value="EUR">EUR</option>
+            <option value="CAD">CAD</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <input name="currencyValue" id="currencyValue" type="text" class="form-control login-input" readonly>
+        </div>
+        <div class="mb-3">
+          <label for="currencyNewValue" class="form-label">Moeda</label>
+          <input name="currencyNewValue" id="currencyNewValue" type="number" class="form-control login-input"></input>
+        </div>
+        <div class="mb-3">
+          <a href="/" class="btn btn-success mb-3">VOLTAR</a>
+          <button id="submitButton" type="submit" class="btn btn-success mb-3">ATUALIZAR</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>
