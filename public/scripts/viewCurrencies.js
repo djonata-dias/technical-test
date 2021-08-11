@@ -14,23 +14,32 @@ function getCryptoValues() {
     headers: {
       'Accept': 'application/json',
     },
-  }).then(response => response.json());
+  }).then(response => {
+    const data = response.json()
+    if(data.message){
+     return alert(data.message);
+    }
+    return data;
+  });
 };
 
 window.onload = async () => {
   const btcField = document.getElementById('BTC');
   const updateCurrenciesField = document.getElementById('updateCurrencies');
   const currencyFields = document.getElementsByClassName('currencyField');
-
+  const token = localStorage.getItem('token');
   let currenciesResponse = await getCryptoValues();
-
   updateCurrencies(currencyFields, btcField.value, currenciesResponse);
 
   btcField.addEventListener('change', () => {
     updateCurrencies(currencyFields, btcField.value, currenciesResponse);
   });
   updateCurrenciesField.addEventListener('click', async () => {
-    window.location.href = '/editCurrency';
+    if(!token){
+      alert("Você precisa estar logado para entrar nesta seção!")
+      return window.location.href = '/login'
+    }
+    window.location.href = '/editCurrency'
   });
 
 };
