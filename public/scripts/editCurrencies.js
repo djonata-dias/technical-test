@@ -6,9 +6,18 @@ function currenciesValues(token) {
       'Accept': 'application/json',
       'Authorization': token
     },
-  }).then(response => response.json());
-}
-
+  }).then(response => {
+    const data = response.json()
+    if (data.message) {
+      alert(data.message);
+      if (cryptos.auth === false) {
+        return window.location.href = '/login';
+      }
+      return location.reload();
+    }
+    return data;
+  });
+};
 
 window.onload = async () => {
   const token = localStorage.getItem('token');
@@ -16,7 +25,6 @@ window.onload = async () => {
   const newValue = document.getElementById('currencyNewValue');
   let oldValue = document.getElementById('currencyValue');
   let cryptos = await currenciesValues(token);
-  console.log(token);
   oldValue.value = cryptos[currency.value];
 
   currency.addEventListener('change', async () => {
@@ -41,7 +49,4 @@ window.onload = async () => {
     window.location.href = '/';
   });
 
-  document.getElementById('backButton').addEventListener('click', () => {
-    window.location.href = '/';
-  });
 };
