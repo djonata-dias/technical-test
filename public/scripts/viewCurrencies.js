@@ -14,14 +14,15 @@ function getCryptoValues() {
     headers: {
       'Accept': 'application/json',
     },
-  }).then(response => {
-    const data = response.json()
-    if(data.message){
-     return alert(data.message);
-    }
-    return data;
-  });
+  }).then(response => response.json());
 };
+
+function handleErro(response){
+  if(response.message){
+   return alert(response.message);
+  }
+  return response;
+}
 
 window.onload = async () => {
   const btcField = document.getElementById('BTC');
@@ -29,9 +30,11 @@ window.onload = async () => {
   const currencyFields = document.getElementsByClassName('currencyField');
   const token = localStorage.getItem('token');
   let currenciesResponse = await getCryptoValues();
+  handleErro(updateCurrencies);
   updateCurrencies(currencyFields, btcField.value, currenciesResponse);
 
   btcField.addEventListener('change', () => {
+    handleErro(updateCurrencies);
     updateCurrencies(currencyFields, btcField.value, currenciesResponse);
   });
   updateCurrenciesField.addEventListener('click', async () => {
